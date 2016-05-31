@@ -32,7 +32,7 @@ objects:
   kind: DeploymentConfig
   metadata:
     annotations:
-      description: Definition for deploying Apache
+      description: Definition for deploying Nginx
     labels:
       service: nginx-1.10
     name: ${APP_SERVICE_NAME}
@@ -48,7 +48,7 @@ objects:
           test: 'Where does this value end up? #196'
         labels:
           name: ${APP_SERVICE_NAME}
-          service: apache-2.4
+          service: nginx-1.10
         name: ${APP_SERVICE_NAME}
       spec:
         containers:
@@ -84,9 +84,9 @@ parameters:
   displayName: Application service name
   name: APP_SERVICE_NAME
   required: true
-  from: apache-[a-z]{5}
+  from: nginx-[a-z]{5}
   generate: expression
-- description: The exposed hostname that will route to the Apache Server, if left
+- description: The exposed hostname that will route to the Nginx Server, if left
     blank a value will be defaulted.
   displayName: Application Hostname
   name: APPLICATION_DOMAIN
