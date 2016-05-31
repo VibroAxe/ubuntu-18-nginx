@@ -66,12 +66,11 @@ objects:
             name: nginx-data
         restartPolicy: Always
         securityContext:
-          runAsUser: "1021400022:10000"
+          runAsUser: 1021400022
         volumes:
         - emptyDir:
             medium: ""
           name: nginx-data
-
     triggers:
     - type: ConfigChange
 parameters:
