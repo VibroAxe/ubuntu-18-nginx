@@ -1,15 +1,15 @@
 version: '2'
 services:
-  ubuntu-16-nginx-1.10.0:
+  ubuntu-16-nginx:
     build: .
     image: ubuntu-16-nginx-1.10.0
     volumes:
-        - /path/to/your/local/test/cert:/path/to/openshift/secret
+        - /tmp/logfiles:/var/log/nginx
     ports:
       - "8080:8080"
       - "8443:8443"
     user: "100000"
     environment:
-#     - "SUPERVISORD_LOGLEVEL=debug"
-      - SSL_KEY=/path/to/openshift/secret/key.key
-      - SSL_CERT=/path/to/openshift/secret/cert.crt
+     - "SUPERVISORD_LOGLEVEL=debug"
+#      - SSL_KEY=/path/to/openshift/secret/key.key
+#     - SSL_CERT=/path/to/openshift/secret/cert.crt
