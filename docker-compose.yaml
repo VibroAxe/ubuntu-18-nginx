@@ -5,11 +5,10 @@ services:
     image: ubuntu-16-nginx-1.10.0
 #    volumes:
 #        - /tmp/logfiles:/var/log/nginx
+#        - /home/james/1and1internet/ubuntu-16-nginx/ssl_test:/ssl
     ports:
       - "8080:8080"
       - "8443:8443"
     user: "100000"
 #    environment:
 #     - "SUPERVISORD_LOGLEVEL=debug"
-#     - SSL_KEY=/path/to/openshift/secret/key.key
-#     - SSL_CERT=/path/to/openshift/secret/cert.crt
