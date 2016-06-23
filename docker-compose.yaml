@@ -5,7 +5,7 @@ services:
     image: ubuntu-16-nginx-1.10.0
 #    volumes:
 #        - /tmp/logfiles:/var/log/nginx
-#        - /home/james/1and1internet/ubuntu-16-nginx/ssl_test:/ssl
+#        - /path/to/ssl/test/:/ssl
     ports:
       - "8080:8080"
       - "8443:8443"
