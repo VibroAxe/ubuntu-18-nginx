@@ -1,0 +1,6 @@
+#!/bin/bash
+#Setting document root
+echo -e "Setting Document root to $DOCUMENT_ROOT"
+cp /etc/nginx/sites-enabled/site.conf /tmp
+sed -i -e 's,root /var/www/html,root '"$DOCUMENT_ROOT"',g' /tmp/site.conf
+cat /tmp/site.conf > /etc/nginx/sites-enabled/site.conf
