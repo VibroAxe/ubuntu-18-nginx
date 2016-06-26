@@ -1,6 +1,14 @@
 #!/bin/bash
 #Setting document root
-echo -e "Setting Document root to $DOCUMENT_ROOT"
+
+if [ ! -d "$DOCUMENT_ROOT" ]; then
+   echo "Creating document root folder $DOCUMENT_ROOT"
+   mkdir -p "$DOCUMENT_ROOT"
+else
+   echo "Document root folder already exists, doing nothing."
+fi
+
+echo "Setting document root to $DOCUMENT_ROOT"
 cp /etc/nginx/sites-enabled/site.conf /tmp
 sed -i -e 's,root /var/www/html,root '"$DOCUMENT_ROOT"',g' /tmp/site.conf
 cat /tmp/site.conf > /etc/nginx/sites-enabled/site.conf
