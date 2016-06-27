@@ -16,6 +16,5 @@ RUN \
   chmod -R 755 /hooks /init && \
   chmod 755 /var/www && \
   chmod 666 /etc/nginx/sites-enabled/site.conf
-WORKDIR /var/www
 
 EXPOSE 8080 8443
