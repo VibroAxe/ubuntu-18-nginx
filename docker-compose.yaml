@@ -4,11 +4,9 @@ services:
     build: .
     image: ubuntu-16-nginx-1.10.0
 #    volumes:
-#        - /tmp/logfiles:/var/log/nginx
-#        - /path/to/ssl/test/:/ssl
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "80:8080"
+      - "443:8443"
     user: "100000"
 #    environment:
 #     - "SUPERVISORD_LOGLEVEL=debug"
