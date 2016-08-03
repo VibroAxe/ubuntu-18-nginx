@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # If our document root is empty - then copy over a suite of test files
 echo -n "Checking if /var/www/$DOCUMENT_ROOT is empty - "
