@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Setting document root
 
 if [ ! -d "/var/www/$DOCUMENT_ROOT" ]; then

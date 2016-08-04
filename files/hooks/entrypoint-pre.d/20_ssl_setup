@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+#
 #  SSL Configuration.
 #
 
@@ -38,8 +40,8 @@ elif [[ ! -z "$SSL_KEY" ]] && [[ ! -z "$SSL_CERT" ]]; then
     cp /etc/nginx/sites-enabled/site.conf /tmp
     sed -i -e 's/# listen 443/listen 8443/g' /tmp/site.conf
     sed -i -e 's/# listen \[::\]:443/listen \[::\]:8443/g' /tmp/site.conf
-    sed -i -e '/server_name _;/a \        ssl\_certificate\_key \/ssl\/ssl\.key\;' /tmp/site.conf
-    sed -i -e '/server_name _;/a \        ssl\_certificate \/ssl\/ssl\.crt\;' /tmp/site.conf
+    sed -i -e "/server_name _;/a \        ssl\_certificate\_key ${SSL_KEY}\;" /tmp/site.conf
+    sed -i -e "/server_name _;/a \        ssl\_certificate ${SSL_CERT}\;" /tmp/site.conf
     cat /tmp/site.conf > /etc/nginx/sites-enabled/site.conf
   fi
 
