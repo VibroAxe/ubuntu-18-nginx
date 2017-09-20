@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-#Setting document root
 
-if [ ! -d "/var/www/$DOCUMENT_ROOT" ]; then
-  echo "Creating document root folder /var/www/$DOCUMENT_ROOT"
+if [ -s /etc/DOCUMENT_ROOT ]; then
+    DOCUMENT_ROOT=`cat /etc/DOCUMENT_ROOT`
+else
+    echo ${DOCUMENT_ROOT} > /etc/DOCUMENT_ROOT
+fi
+
+if [ ! -d  "/var/www/$DOCUMENT_ROOT" ]; then
+  echo "Creating folder /var/www/$DOCUMENT_ROOT"
   mkdir -p "/var/www/$DOCUMENT_ROOT"
 else
-  echo "Document root folder already exists, doing nothing."
+  echo "/var/www/$DOCUMENT_ROOT already exists."
 fi
 
 echo "Setting document root to /var/www/$DOCUMENT_ROOT"
