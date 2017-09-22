@@ -19,7 +19,7 @@ RUN \
     chmod -R 777 /var/log/nginx && \
     chmod -R 755 /hooks /init && \
     chmod 755 /var/www && \
-    chmod 666 /etc/nginx/sites-enabled/site.conf && \
+    chmod -R 666 /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && \
     cd /opt/configurability/src/configurability_nginx_process/ && \
     pip --no-cache install --upgrade .
 
