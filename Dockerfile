@@ -15,7 +15,7 @@ RUN \
     sed -i -e 's/gzip_disable/#gzip_disable/' /etc/nginx/nginx.conf && \
     rm /etc/nginx/sites-available/* /etc/nginx/sites-enabled/default && \
     mkdir -p /var/www/html && \
-    chmod 777 /var/www/html /var/lib/nginx && \
+    chmod 777 /var/www/html /var/lib/nginx /etc/DOCUMENT_ROOT && \
     chmod -R 777 /var/log/nginx && \
     chmod -R 755 /hooks /init && \
     chmod 755 /var/www && \
