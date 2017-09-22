@@ -94,7 +94,7 @@ def process(name, config, directory, config_translator=None):
         variable_regex = re.compile('\${?%s}?' % document_root_key)
 
         root_command_regex = re.compile('root /var/www/.*;')
-        new_root_command = 'root /var/www/%s' % document_root
+        new_root_command = 'root /var/www/%s;' % document_root
 
         for file_path in os.listdir(sites_enabled_directory):
             full_file_path = os.path.join(sites_enabled_directory, file_path)
