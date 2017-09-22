@@ -71,7 +71,9 @@ def process(name, config, directory):
         if os.environ.get(document_root_key, document_root_default) not in [document_root, document_root_default]:
             raise Exception('Legacy %s variable is present with a conflicting value' % document_root_key)
 
-        os.makedirs(os.path.join('var', 'www', document_root))
+        document_root_path = os.path.join('var', 'www', document_root)
+        if not os.path.exists(document_root_path):
+            os.makedirs(document_root_path)
 
         #
         #  Update the on disk well known location so that other scripts
