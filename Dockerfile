@@ -19,6 +19,8 @@ RUN \
     chmod -R 777 /var/log/nginx && \
     chmod -R 755 /hooks /init && \
     chmod 755 /var/www && \
-    chmod 666 /etc/nginx/sites-enabled/site.conf
+    chmod 666 /etc/nginx/sites-enabled/site.conf && \
+    cd /opt/configurability/src/configurability_nginx_process/ && \
+    pip --no-cache install --upgrade .
 
 EXPOSE 8080 8443
