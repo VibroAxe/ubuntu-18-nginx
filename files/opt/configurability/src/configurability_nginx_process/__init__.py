@@ -99,13 +99,16 @@ def process(name, config, directory, config_translator=None):
         for file_path in os.listdir(sites_enabled_directory):
             full_file_path = os.path.join(sites_enabled_directory, file_path)
             if os.path.isfile(full_file_path):
+                write_needed = False
                 with open(full_file_path, 'r') as file_handle:
                     lines = file_handle.readlines()
                     for index, line in enumerate(lines):
-                        lines[index] = variable_regex.sub(document_root, line)
-                        lines[index] = root_command_regex.sub(new_root_command, line)
-                with open(full_file_path, 'w') as file_handle:
-                    file_handle.writelines(lines)
+                        lines[index] = variable_regex.sub(document_root, lines[index])
+                        lines[index] = root_command_regex.sub(new_root_command, lines[index])
+                        write_needed = write_needed or lines[index] != line
+                if write_needed:
+                    with open(full_file_path, 'w') as file_handle:
+                        file_handle.writelines(lines)
 
         logger.info('%13s = %s' % (document_root_key, document_root))
 
@@ -136,6 +139,7 @@ def process(name, config, directory, config_translator=None):
         full_file_path = os.path.join(nginx_directory, 'conf.d', 'gzip.conf')
         if os.path.isfile(full_file_path):
 
+            write_needed = False
             with open(full_file_path, 'r') as file_handle:
 
                 # Read
@@ -143,12 +147,14 @@ def process(name, config, directory, config_translator=None):
 
                 # Modify
                 for index, line in enumerate(lines):
-                    lines[index] = gzip_command_regex.sub(new_gzip_command, line)
+                    lines[index] = gzip_command_regex.sub(new_gzip_command, lines[index])
                     if gzip:
-                        lines[index] = gzip_level_command_regex.sub(new_gzip_level_command, line)
+                        lines[index] = gzip_level_command_regex.sub(new_gzip_level_command, lines[index])
+                    write_needed = write_needed or lines[index] != line
 
             # Write
-            with open(full_file_path, 'w') as file_handle:
-                file_handle.writelines(lines)
+            if write_needed:
+                with open(full_file_path, 'w') as file_handle:
+                    file_handle.writelines(lines)
 
         logger.info('%13s = %s' % (gzip_key.upper(), gzip_level))
