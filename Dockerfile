@@ -15,10 +15,12 @@ RUN \
     sed -i -e 's/gzip_disable/#gzip_disable/' /etc/nginx/nginx.conf && \
     rm /etc/nginx/sites-available/* /etc/nginx/sites-enabled/default && \
     mkdir -p /var/www/html && \
-    chmod 777 /var/www/html /var/lib/nginx && \
+    chmod 777 /var/www/html /var/lib/nginx /etc/DOCUMENT_ROOT && \
     chmod -R 777 /var/log/nginx && \
     chmod -R 755 /hooks /init && \
     chmod 755 /var/www && \
-    chmod 666 /etc/nginx/sites-enabled/site.conf
+    chmod -R 666 /etc/nginx/sites-enabled/* /etc/nginx/conf.d/* && \
+    cd /opt/configurability/src/configurability_nginx_process/ && \
+    pip --no-cache install --upgrade .
 
 EXPOSE 8080 8443
