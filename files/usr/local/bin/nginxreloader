@@ -11,7 +11,7 @@ function initialise {
 
 function do_sighup {
     echo -n "SIGHUP sent at "; date
-    kill -HUP $(ps -ef | grep nginx | grep master | awk '{ print $2 }')
+    kill -HUP $(cat /var/run/nginx.pid)
 }
 
 function custom_nginx_conf {
