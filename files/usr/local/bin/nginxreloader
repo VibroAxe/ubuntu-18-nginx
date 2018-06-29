@@ -9,9 +9,21 @@ function do_sighup {
 }
 
 function loop_forever {
+    # We must ignore OPEN events - we are not interested if nginx opens
+    # a file (which it is always doing)
     while [ 1 ]; do
-        inotifywait $CUSTOMER_NGINX_CONF && do_sighup || inotifywait $SITE_FOLDER
+        if [ -f $CUSTOMER_NGINX_CONF ]; then
+            # There is a custom nginx.conf, so watch for changes
+            inotifywait -e MODIFY -e DELETE -e CLOSE_WRITE $CUSTOMER_NGINX_CONF
+            do_sighup
+        else
+            # There is no custom nginx.conf, so wait for one
+            while [ ! -f $CUSTOMER_NGINX_CONF ]; do
+                inotifywait -e CREATE -e DELETE $SITE_FOLDER
+            done
+            do_sighup
+        fi
     done
 }
 
-loop_forever > /var/log/nginx/reloader.log
+loop_forever > /var/log/nginx/reloader.log 2>&1
