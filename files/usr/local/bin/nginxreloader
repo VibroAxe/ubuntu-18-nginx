@@ -15,14 +15,13 @@ function loop_forever {
         if [ -f $CUSTOMER_NGINX_CONF ]; then
             # There is a custom nginx.conf, so watch for changes
             inotifywait -e MODIFY -e DELETE -e CLOSE_WRITE $CUSTOMER_NGINX_CONF
-            do_sighup
         else
             # There is no custom nginx.conf, so wait for one
             while [ ! -f $CUSTOMER_NGINX_CONF ]; do
-                inotifywait -e CREATE -e DELETE $SITE_FOLDER
+                inotifywait -e CREATE $SITE_FOLDER
             done
-            do_sighup
         fi
+        do_sighup
     done
 }
 
