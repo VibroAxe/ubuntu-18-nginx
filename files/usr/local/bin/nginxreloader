@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 RELOADER_FOLDER=/tmp/nginxreloader
-CUSTOMER_NGINX_CONF=/var/www/html/nginx.conf
+CUSTOMER_NGINX_CONF=/var/www/nginx.conf
 CUSTOMER_NGINX_CONF_PREV=${RELOADER_FOLDER}/nginx.conf
 
 function initialise {
