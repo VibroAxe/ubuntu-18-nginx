@@ -14,6 +14,6 @@ else
 fi
 
 echo "Setting document root to /var/www/$DOCUMENT_ROOT"
-cp /etc/nginx/sites-enabled/site.conf /tmp
+cp /etc/nginx/sites-available/site.conf /tmp
 sed -i -e 's,root /var/www/html,root /var/www/'"$DOCUMENT_ROOT"',g' /tmp/site.conf
-cat /tmp/site.conf > /etc/nginx/sites-enabled/site.conf
+cat /tmp/site.conf > /etc/nginx/sites-available/site.conf
