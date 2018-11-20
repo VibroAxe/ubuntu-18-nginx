@@ -1,4 +1,4 @@
-FROM 1and1internet/ubuntu-16:latest
+FROM 1and1internet/ubuntu-18:latest
 MAINTAINER brian.wojtczak@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
