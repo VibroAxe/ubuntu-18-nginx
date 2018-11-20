@@ -7,9 +7,9 @@ ENV SSL_KEY=/ssl/ssl.key \
     DOCUMENT_ROOT=html
 RUN \
     apt-get update && apt-get install -o Dpkg::Options::=--force-confdef -y nginx inotify-tools poppler-utils && \
+	chmod 777 /opt/nginx/startnginx.sh && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i -r -e '/^user www-data;/d' /etc/nginx/nginx.conf && \
-    echo "daemon off;" >> /etc/nginx/nginx.conf && \
     sed -i -e '/sendfile on;/a\        client_max_body_size 0\;' /etc/nginx/nginx.conf && \
     sed -i -e 's/gzip on/#gzip on/' /etc/nginx/nginx.conf && \
     sed -i -e 's/gzip_disable/#gzip_disable/' /etc/nginx/nginx.conf && \
